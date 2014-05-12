@@ -8,8 +8,6 @@ require 'json'
 
 helpers do
   def holiday?(day, ids)
-    # return true if [0, 6].include?(today.wday)
-
     conn = Faraday.new url: 'http://www.google.com' do |faraday|
       faraday.request :url_encoded
       faraday.response :json
@@ -55,7 +53,6 @@ get '/' do
       res = holiday? day, ids
     end
   rescue => e
-    p e
     status 400
     res = {error: e.to_s}
   end
